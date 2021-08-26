@@ -2,7 +2,7 @@ class UserData:
 
     def __init__(self):
         self.name = 'test557788'
-        self.password = 'qweQWE123!@#'
+        self.password = 'Qwerty123456'
 
     def get_name(self):
         return self.name
