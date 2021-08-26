@@ -4,8 +4,11 @@ class UserData:
         self.name = 'test557788'
         self.password = 'qweQWE123!@#'
 
-    def name(self):
+    def get_name(self):
         return self.name
 
-    def password(self):
+    def get_password(self):
         return self.password
+
+    def get_wrong_password(self):
+        return 'abcdefgh'
