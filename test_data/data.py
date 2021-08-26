@@ -12,3 +12,16 @@ class UserData:
 
     def get_wrong_password(self):
         return 'abcdefgh'
+
+
+class Product:
+
+    def __init__(self):
+        self.name = 'MacBook Pro'
+        self.category = 'Laptops'
+
+    def get_name(self):
+        return self.name
+
+    def get_category(self):
+        return self.category

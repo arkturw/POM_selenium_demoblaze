@@ -24,8 +24,7 @@ def test_login_positive(browser):
     index_page.open_login_popup()
     # Logowanie
     index_page.log_in(user_data.get_name(),
-                     user_data.get_password()
-                     )
+                      user_data.get_password())
     # Asercja
     index_page.is_username_visible(user_data.get_name())
 
@@ -39,7 +38,6 @@ def test_login_negative_password(browser):
     main_page.open_login_popup()
     # Logowanie
     main_page.log_in(user_data.get_name(),
-                     user_data.get_wrong_password()
-                     )
+                     user_data.get_wrong_password()                     )
     # Asercja
     main_page.is_wrong_password_message_displayed()
