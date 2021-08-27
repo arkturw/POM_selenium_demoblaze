@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+
+from utils.utilities import wait_for_alert
 from time import sleep
 
 
@@ -25,17 +27,12 @@ class ProductPage:
             product_name = self.browser.find_element(*self.HEADER_PRODUCT_NAME)
             assertion_message = f'Oczekiwana nazwa produktu ({0}) nie jest widoczna', expected_name
             assert product_name.is_displayed(), assertion_message
-            return True
         except Exception as err:
-            print('Wystąpił wyjątek 1: ', err)
+            print('Wystąpił wyjątek: ', err)
             return False
 
     def is_confirmation_visible(self):
-        try:
-            alert = self.browser.switch_to.alert
-            assert 'Product added.' in alert.text, 'Brak alertu.'
-            sleep(3)
-            alert.accept()
-        except Exception as e:
-            print('Wystąpił wyjątek 2: ', e)
-            return False
+        wait_for_alert(self.browser)
+        alert = self.browser.switch_to.alert
+        assert 'Product added.' in alert.text
+        alert.accept()

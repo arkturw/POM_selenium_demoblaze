@@ -3,7 +3,7 @@ from selenium.webdriver import Firefox
 
 from pages.index import IndexPage
 from pages.prod import ProductPage
-from test_data.data import Product, UserData
+from test_data.data import ProductData, UserData
 
 
 # Przygotowanie drivera
@@ -14,11 +14,11 @@ def browser():
     yield driver
     driver.quit()
 
+
 @pytest.fixture()
 def log_in(browser):
-    # Załadowanie danych testowych
+    # Załadowanie danych testowych użytkownika
     user_data = UserData()
-    product = Product()
     # Strona główna
     index_page = IndexPage(browser)
     index_page.load()
@@ -28,13 +28,15 @@ def log_in(browser):
                       user_data.get_password())
     # Dodanie laptopa do koszyka
     index_page.wait_for_login_modal_to_disappear()
-    return product
+    return index_page
 
 
 # @pytest.mark.usefixtures('log_in')
 def test_add_laptop_to_cart(browser, log_in):
-    product = log_in
-    index_page = IndexPage(browser)
+    # Załadowanie danych tesowych produktu
+    product = ProductData()
+    # wyszukiwanie produktu
+    index_page = log_in
     index_page.go_to_category(product.get_category())
     index_page.find_product_by_name(product.get_name())
     # Przejście na stronę produktu

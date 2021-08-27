@@ -14,7 +14,7 @@ class UserData:
         return 'abcdefgh'
 
 
-class Product:
+class ProductData:
 
     def __init__(self):
         self.name = 'MacBook Pro'
