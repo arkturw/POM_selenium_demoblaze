@@ -5,7 +5,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
 from utils.utilities import wait_for_alert
-from time import sleep
 
 
 class IndexPage:
@@ -20,6 +19,7 @@ class IndexPage:
     INPUT_PASSWORD = By.ID, 'loginpassword'
     MODAL_LOGIN = By.ID, 'logInModal'
     TEXT_USERNAME = '//div/ul/li/a[@id="nameofuser" and contains(text(), "{0}")]'
+    LINK_CART = By.LINK_TEXT, 'Cart'
     LINK_CATEGORY = '//a[@id="itemc" and text()="{0}"]'
 
     # Metody klasy
@@ -58,6 +58,10 @@ class IndexPage:
         except NoSuchElementException as e:
             print('Wystąpił wyjątek: ', e)
             return False
+
+    def go_to_cart(self):
+        link_cart = WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(self.LINK_CART))
+        link_cart.click()
 
     # Asercje
     def is_username_visible(self, username):
