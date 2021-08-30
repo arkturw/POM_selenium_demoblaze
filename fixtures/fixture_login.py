@@ -3,6 +3,11 @@ import pytest
 from pages.index import IndexPage
 from test_data.data import UserData
 
+from fixtures.fixture_setup import (
+    browser,
+    browser_instance
+)
+
 
 # Zalogowanie użytkownika przed kolejnymi testwmi
 @pytest.fixture()

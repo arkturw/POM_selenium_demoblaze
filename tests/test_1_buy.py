@@ -5,7 +5,10 @@ from pages.prod import ProductPage
 from pages.cart import CartPage
 from test_data.data import ProductData, UserData
 
-from fixtures.fixture_setup import browser
+from fixtures.fixture_setup import (
+    browser,
+    browser_instance
+)
 from fixtures.fixture_login import log_in
 
 
