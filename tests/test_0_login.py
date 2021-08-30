@@ -1,18 +1,9 @@
-import pytest
-from selenium.webdriver import Firefox
-
+from fixtures.fixture_setup import (
+    browser,
+    browser_instance
+)
 from pages.index import IndexPage
 from test_data.data import UserData
-
-
-# Przygotowanie drivera
-@pytest.fixture
-def browser():
-    driver = Firefox()
-    driver.implicitly_wait(10)
-    # driver.maximize_window()
-    yield driver
-    driver.quit()
 
 
 def test_login_positive(browser):

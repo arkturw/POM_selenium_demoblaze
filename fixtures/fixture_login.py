@@ -9,8 +9,8 @@ from fixtures.fixture_setup import (
 )
 
 
-# Zalogowanie użytkownika przed kolejnymi testwmi
-@pytest.fixture()
+# Zalogowanie użytkownika przed kolejnymi testami
+@pytest.fixture
 def log_in(browser):
     # Załadowanie danych testowych użytkownika
     user_data = UserData()
