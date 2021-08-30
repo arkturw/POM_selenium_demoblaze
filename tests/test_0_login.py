@@ -38,6 +38,6 @@ def test_login_negative_password(browser):
     main_page.open_login_popup()
     # Logowanie
     main_page.log_in(user_data.get_name(),
-                     user_data.get_wrong_password()                     )
+                     user_data.get_wrong_password())
     # Asercja
     main_page.is_wrong_password_message_displayed()
