@@ -1,35 +1,15 @@
 import pytest
-from selenium.webdriver import Firefox
 
 from pages.index import IndexPage
 from pages.prod import ProductPage
 from pages.cart import CartPage
 from test_data.data import ProductData, UserData
 
-
-# Przygotowanie drivera
-@pytest.fixture
-def browser():
-    driver = Firefox()
-    driver.implicitly_wait(10)
-    yield driver
-    driver.quit()
-
-
-@pytest.fixture()
-def log_in(browser):
-    # Załadowanie danych testowych użytkownika
-    user_data = UserData()
-    # Strona główna
-    index_page = IndexPage(browser)
-    index_page.load()
-    index_page.open_login_popup()
-    # Logowanie
-    index_page.log_in(user_data.get_name(),
-                      user_data.get_password())
-    # Dodanie laptopa do koszyka
-    index_page.wait_for_login_modal_to_disappear()
-    return index_page
+from fixtures.fixture_setup import (
+    browser,
+    browser_instance
+)
+from fixtures.fixture_login import log_in
 
 
 # @pytest.mark.usefixtures('log_in')
@@ -58,3 +38,4 @@ def test_check_cart(browser, log_in):
     # Przeszukanie koszyka
     cart_page = CartPage(browser)
     cart_page.is_product_in_cart(product.get_name())
+    cart_page.is_only_product_in_cart(product.get_name())
